@@ -1,73 +1,43 @@
 #include <map>
 #include "scenes/scene_chromecast.h"
+#include "applicationInternal/commandHandler.h"
 #include "applicationInternal/keys.h"
 #include "applicationInternal/scenes/sceneRegistry.h"
 #include "applicationInternal/hardware/hardwarePresenter.h"
-// devices
-#include "devices/TV/device_samsungTV/device_samsungTV.h"
-#include "devices/AVreceiver/device_yamahaAmp/device_yamahaAmp.h"
-#include "applicationInternal/commandHandler.h"
 
-uint16_t SCENE_CHROMECAST      ; //"Scene_chromecast"
-uint16_t SCENE_CHROMECAST_FORCE; //"Scene_chromecast_force"
+// devices
+#include "devices/AVreceiver/device_onkyo/device_onkyo.h"
+#include "devices/mediaPlayer/device_sonybluray/device_sonybluray.h"
+#include "devices/TV/device_optoma/device_optoma.h"
+
+uint16_t SCENE_CHROMECAST;
+uint16_t SCENE_CHROMECAST_FORCE;
 
 std::map<char, repeatModes> key_repeatModes_chromecast;
 std::map<char, uint16_t> key_commands_short_chromecast;
 std::map<char, uint16_t> key_commands_long_chromecast;
 
 void scene_setKeys_chromecast() {
-  key_repeatModes_chromecast = {
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  };
-  
-  key_commands_short_chromecast = {
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  };
-  
-  key_commands_long_chromecast = {
-  
-  
-  };
-
+  key_repeatModes_chromecast = {};
+  key_commands_short_chromecast = {};
+  key_commands_long_chromecast = {};
 }
 
 void scene_start_sequence_chromecast(void) {
-  executeCommand(SAMSUNG_POWER_ON);
+  executeCommand(BLURAY_ON);
   delay(500);
-  executeCommand(YAMAHA_POWER_ON);
-  delay(1500);
-  executeCommand(YAMAHA_INPUT_DVD);
-  delay(3000);
-  executeCommand(SAMSUNG_INPUT_HDMI_1);
-
+  executeCommand(ONKYO_POWER);
+  delay(500);
+  executeCommand(OPTOMA_OFF);
+  delay(500);
 }
 
-void scene_end_sequence_chromecast(void) {
-
-}
+void scene_end_sequence_chromecast(void) {}
 
 std::string scene_name_chromecast = "Chromecast";
 
 void register_scene_chromecast(void) {
-  register_command(&SCENE_CHROMECAST,       makeCommandData(SCENE, {scene_name_chromecast}));
+  register_command(&SCENE_CHROMECAST      , makeCommandData(SCENE, {scene_name_chromecast}));
   register_command(&SCENE_CHROMECAST_FORCE, makeCommandData(SCENE, {scene_name_chromecast, "FORCE"}));
 
   register_scene(

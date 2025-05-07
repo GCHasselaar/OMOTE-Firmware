@@ -1,0 +1,61 @@
+#include "applicationInternal/commandHandler.h"
+#include "applicationInternal/hardware/hardwarePresenter.h"
+#include "device_optoma.h"
+
+uint16_t BLURAY_EJECT;
+uint16_t BLURAY_SOURCE;
+uint16_t BLURAY_TVON;
+uint16_t BLURAY_ON;
+uint16_t BLURAY_RED;
+uint16_t BLURAY_GREEN;
+uint16_t BLURAY_YELLOW;
+uint16_t BLURAY_BLUE;
+uint16_t BLURAY_TOP_MENU;
+uint16_t BLURAY_POP_UP;
+uint16_t BLURAY_UP;
+uint16_t BLURAY_LEFT;
+uint16_t BLURAY_CENTER;
+uint16_t BLURAY_RIGHT;
+
+uint16_t BLURAY_DOWN;
+uint16_t BLURAY_RETURN;
+uint16_t BLURAY_OPTIONS;
+uint16_t BLURAY_HOME;
+uint16_t BLURAY_LIKE;
+uint16_t BLURAY_NETFLIX;
+
+uint16_t BLURAY_REWIND;
+uint16_t BLURAY_PLAY;
+uint16_t BLURAY_FORWARD;
+uint16_t BLURAY_PREVIOUS;
+uint16_t BLURAY_PAUSE;
+uint16_t BLURAY_STOP;
+
+void register_device_optoma(){
+    register_command(&BLURAY_EJECT,            makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB340BF"}));
+    register_command(&BLURAY_SOURCE,           makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3748B"}));
+    register_command(&BLURAY_TVON,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB36C93"}));
+    register_command(&BLURAY_ON,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3A659"}));
+    register_command(&BLURAY_RED,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB36699"}));
+    register_command(&BLURAY_GREEN,    makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3827D"}));
+    register_command(&BLURAY_YELLOW,      makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB342BD"}));
+    register_command(&BLURAY_BLUE,          makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3A05F"}));
+    register_command(&BLURAY_TOP_MENU,      makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3E01F"}));
+    register_command(&BLURAY_POP_UP,   makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB326D9"}));
+    register_command(&BLURAY_UP,            makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3916E"}));
+    register_command(&BLURAY_LEFT,          makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB34AB5"}));
+    register_command(&BLURAY_CENTER,            makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB322DD"}));
+    register_command(&BLURAY_RIGHT,    makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3C639"}));
+    register_command(&BLURAY_DOWN,            makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB38877"}));
+    register_command(&BLURAY_RETURN,          makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB308F7"}));
+    register_command(&BLURAY_OPTIONS,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3F00F"}));
+    register_command(&BLURAY_HOME,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB348B7"}));
+    register_command(&BLURAY_LIKE,          makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB328D7"}));
+    register_command(&BLURAY_NETFLIX,          makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3708F"}));
+    register_command(&BLURAY_REWIND,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB36897"}));
+    register_command(&BLURAY_PLAY,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB30CF3"}));
+    register_command(&BLURAY_FORWARD,          makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3D827"}));
+    register_command(&BLURAY_PREVIOUS,          makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB37887"}));
+    register_command(&BLURAY_PAUSE,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB338C7"}));
+    register_command(&BLURAY_STOP,     makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3E817"}));
+}
