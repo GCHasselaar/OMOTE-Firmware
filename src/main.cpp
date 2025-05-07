@@ -28,7 +28,6 @@
 #include "guis/gui_sceneSelection.h"
 #include "guis/gui_irReceiver.h"
 #include "guis/gui_settings.h"
-#include "guis/gui_numpad.h"
 #include "guis/gui_BLEpairing.h"
 //#include "devices/misc/device_airconditioner/gui_airconditioner.h"
 #include "applicationInternal/keys.h"
@@ -98,7 +97,6 @@ int main(int argc, char *argv[]) {
   register_gui_irReceiver();
   register_gui_settings();
   
-  register_gui_numpad();
   #if (ENABLE_KEYBOARD_BLE == 1)
   register_gui_blepairing();
   #endif
@@ -123,7 +121,7 @@ int main(int argc, char *argv[]) {
   register_scene_wii();
   register_scene_allOff();
   // Only show these scenes on the sceneSelection gui. If you don't set this explicitely, by default all registered scenes are shown.
-  set_scenes_on_sceneSelectionGUI({scene_name_bluray, scene_name_chromecast, scene_name_gamecube, scene_name_pc, scene_name_ps3, scene_name_switch, scene_name_switch, scene_name_wii});
+  set_scenes_on_sceneSelectionGUI({scene_name_bluray, scene_name_chromecast, scene_name_gamecube, scene_name_pc, scene_name_ps3, scene_name_switch, scene_name_wii});
 
   // init GUI - will initialize tft, touch and lvgl
   init_gui(); // This has to come before any other i2c devices are initialized, otherwise the i2c bus will not be powered

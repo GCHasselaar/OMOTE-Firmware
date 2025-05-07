@@ -1,79 +1,40 @@
 #include <map>
 #include "scenes/scene_allOff.h"
+#include "applicationInternal/commandHandler.h"
 #include "applicationInternal/keys.h"
 #include "applicationInternal/scenes/sceneRegistry.h"
 #include "applicationInternal/hardware/hardwarePresenter.h"
-// devices
-#include "devices/TV/device_samsungTV/device_samsungTV.h"
-#include "devices/AVreceiver/device_yamahaAmp/device_yamahaAmp.h"
-#include "applicationInternal/commandHandler.h"
 
-uint16_t SCENE_ALLOFF      ; //"Scene_allOff"
-uint16_t SCENE_ALLOFF_FORCE; //"Scene_allOff_force"
+// devices
+#include "devices/AVreceiver/device_onkyo/device_onkyo.h"
+#include "devices/mediaPlayer/device_sonybluray/device_sonybluray.h"
+#include "devices/TV/device_optoma/device_optoma.h"
+#include "applicationInternal/omote_log.h"
+
+uint16_t SCENE_ALLOFF;
+uint16_t SCENE_ALLOFF_FORCE;
 
 std::map<char, repeatModes> key_repeatModes_allOff;
 std::map<char, uint16_t> key_commands_short_allOff;
 std::map<char, uint16_t> key_commands_long_allOff;
 
 void scene_setKeys_allOff() {
-  key_repeatModes_allOff = {
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  };
-  
-  key_commands_short_allOff = {
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  };
-  
-  key_commands_long_allOff = {
-  
-  
-  };
-
+  key_repeatModes_allOff = {};
+  key_commands_short_allOff = {};
+  key_commands_long_allOff = {};
 }
 
 void scene_start_sequence_allOff(void) {
-  executeCommand(SAMSUNG_POWER_OFF);
+  omote_log_i("start scene all off");
+  executeCommand(BLURAY_ON);
   delay(500);
-  executeCommand(YAMAHA_POWER_OFF);
+  executeCommand(ONKYO_POWER);
   delay(500);
-  // repeat IR to be sure
-  executeCommand(SAMSUNG_POWER_OFF);
+  executeCommand(OPTOMA_OFF);
   delay(500);
-  executeCommand(YAMAHA_POWER_OFF);
-  delay(500);
-  // repeat IR to be sure
-  executeCommand(SAMSUNG_POWER_OFF);
-  delay(500);
-  executeCommand(YAMAHA_POWER_OFF);
-  delay(500);
-  // you cannot power off FireTV, but at least you can stop the currently running app
-  executeCommand(KEYBOARD_HOME);
-  delay(500);
-  executeCommand(KEYBOARD_HOME);
-
 }
 
-void scene_end_sequence_allOff(void) {
-
-}
+void scene_end_sequence_allOff(void) {}
 
 std::string scene_name_allOff = "Off";
 

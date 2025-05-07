@@ -8,8 +8,8 @@
 #include "applicationInternal/commandHandler.h"
 #include "applicationInternal/omote_log.h"
 #include "scenes/scene__default.h"
+#include "layout.h"
 
-lv_color_t color_primary = lv_color_hex(0x303030); // gray
 lv_obj_t* MemoryUsageLabel = NULL;
 lv_obj_t* WifiLabel = NULL;
 lv_obj_t* BluetoothLabel = NULL;
