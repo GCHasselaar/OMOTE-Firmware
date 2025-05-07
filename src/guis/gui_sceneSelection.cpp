@@ -19,6 +19,27 @@ lv_obj_t *grid;
 static int lastShortClickedReceived;
 static unsigned long int lastShortClickedReceivedTime;
 
+static void update_button_borders()
+{
+  //Clear first
+  uint32_t iterator;
+  lv_obj_t *child;
+  lv_obj_t *label;
+  char *label_text = lv_label_get_text(SceneLabel);
+
+  for (iterator = 0; iterator < lv_obj_get_child_cnt(grid); iterator++)
+  {
+    child = lv_obj_get_child(grid, iterator);
+    lv_obj_set_style_outline_width(child, 0, 0);
+
+    label = lv_obj_get_child(child, 0);
+    if (strcmp(lv_label_get_text(label), label_text)==0){
+      lv_obj_set_style_outline_color(child, lv_color_hex(0xffffff), 0);
+      lv_obj_set_style_outline_width(child, 2, 0);
+    }
+  }
+}
+
 void activate_scene_cb(lv_timer_t *timer)
 {
   uint16_t scene_command_including_force = (uintptr_t)(timer->user_data);
@@ -33,30 +54,12 @@ void activate_scene_cb(lv_timer_t *timer)
   {
     executeCommand(activate_scene_command);
   }
-}
 
-static void clear_button_borders()
-{
-  uint32_t iterator;
-  lv_obj_t *child;
-
-  for (iterator = 0; iterator < lv_obj_get_child_cnt(grid); iterator++)
-  {
-    child = lv_obj_get_child(grid, iterator);
-    lv_obj_set_style_outline_width(child, 0, 0);
-  }
+  update_button_borders();
 }
 
 static void sceneSelection_event_cb(lv_event_t *e)
 {
-  //Set border
-  clear_button_borders();
-
-  lv_obj_t *currentTarget = lv_event_get_current_target(e);
-  lv_obj_set_style_outline_color(currentTarget, lv_color_hex(0xffffff), 0);
-  lv_obj_set_style_outline_width(currentTarget, 2, 0);
-
-  //Handle the actual event
   int user_data = (intptr_t)(e->user_data);
 
   // we will receive the following events in that order:
