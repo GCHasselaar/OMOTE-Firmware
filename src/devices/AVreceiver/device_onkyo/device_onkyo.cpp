@@ -39,6 +39,7 @@ uint16_t ONKYO_NEXT;
 uint16_t ONKYO_SHUFFLE;
 uint16_t ONKYO_MEMORY;
 uint16_t ONKYO_MODE;
+bool DEVICE_IS_ON = false;
 
 void register_device_onkyo(){
     register_command(&ONKYO_POWER,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36D32C"}));

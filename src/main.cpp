@@ -112,6 +112,7 @@ int main(int argc, char *argv[]) {
 
   // register the scenes and their key_commands_*
   register_scene_defaultKeys();
+
   register_scene_bluray();
   register_scene_chromecast();
   register_scene_gamecube();
@@ -119,6 +120,7 @@ int main(int argc, char *argv[]) {
   register_scene_ps3();
   register_scene_switch();
   register_scene_wii();
+
   register_scene_allOff();
   // Only show these scenes on the sceneSelection gui. If you don't set this explicitely, by default all registered scenes are shown.
   set_scenes_on_sceneSelectionGUI({scene_name_bluray, scene_name_chromecast, scene_name_gamecube, scene_name_pc, scene_name_ps3, scene_name_switch, scene_name_wii});

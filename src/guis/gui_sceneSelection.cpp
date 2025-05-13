@@ -11,9 +11,6 @@
 static uint16_t activate_scene_command;
 static bool doForceScene;
 
-short COLUMN_LEFT = 0;
-short COLUMN_RIGHT = 1;
-
 lv_obj_t *grid;
 
 static int lastShortClickedReceived;
@@ -21,7 +18,6 @@ static unsigned long int lastShortClickedReceivedTime;
 
 static void update_button_borders()
 {
-  //Clear first
   uint32_t iterator;
   lv_obj_t *child;
   lv_obj_t *label;
@@ -29,11 +25,13 @@ static void update_button_borders()
 
   for (iterator = 0; iterator < lv_obj_get_child_cnt(grid); iterator++)
   {
+    //Clear borders
     child = lv_obj_get_child(grid, iterator);
     lv_obj_set_style_outline_width(child, 0, 0);
 
     label = lv_obj_get_child(child, 0);
     if (strcmp(lv_label_get_text(label), label_text)==0){
+      //Set border if this iteration is the clicked button
       lv_obj_set_style_outline_color(child, lv_color_hex(0xffffff), 0);
       lv_obj_set_style_outline_width(child, 2, 0);
     }
@@ -179,13 +177,13 @@ void create_tab_content_sceneSelection(lv_obj_t *tab)
   scene_list scenes = get_scenes_on_sceneSelectionGUI();
   if ((scenes != NULL) && (scenes->size() > 0))
   {
-    for (int i = 0; i < scenes->size(); i++)
+    for (int i = 0; i < scenes->size(); ++i)
     {
       create_button(
           grid,
           scenes->at(i).c_str(),
           rowIndex,
-          useLeft ? COLUMN_LEFT : COLUMN_RIGHT,
+          useLeft ? 0 : 1,
           (void *)(intptr_t) i
       );
 
