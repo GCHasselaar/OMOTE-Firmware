@@ -40,39 +40,73 @@ uint16_t ONKYO_SHUFFLE;
 uint16_t ONKYO_MEMORY;
 uint16_t ONKYO_MODE;
 
-void register_device_onkyo(){
-    register_command(&ONKYO_POWER,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36D32C"}));
-    register_command(&ONKYO_BDDVD,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B3631CE"}));
-    register_command(&ONKYO_CBLSAT,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6708F"}));
-    register_command(&ONKYO_GAME,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6B04F"}));
-    register_command(&ONKYO_STRMBOX,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6B04F"}));
-    register_command(&ONKYO_PC,             makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB639C6"}));
-    register_command(&ONKYO_AUX,            makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6F906"}));
-    register_command(&ONKYO_CD,             makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6906F"}));
-    register_command(&ONKYO_TV,             makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB612ED"}));
-    register_command(&ONKYO_PHONO,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB650AF"}));
-    register_command(&ONKYO_TUNER,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6D02F"}));
-    register_command(&ONKYO_NET,            makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B40E11E"}));
-    register_command(&ONKYO_BT,             makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B780A70"}));
-    register_command(&ONKYO_QUICKMENU,      makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36CA35"}));
-    register_command(&ONKYO_INFO,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36AA55"}));
-    register_command(&ONKYO_UP,             makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB641BE"}));
-    register_command(&ONKYO_LEFT,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB621DE"}));
-    register_command(&ONKYO_ENTER,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6E916"}));
-    register_command(&ONKYO_RIGHT,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB6A15E"}));
-    register_command(&ONKYO_DOWN,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB6C13E"}));
-    register_command(&ONKYO_SETTINGS,       makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36DB24"}));
-    register_command(&ONKYO_RETURN,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B362AD5"}));
-    register_command(&ONKYO_VOLUP,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB640BF"}));
-    register_command(&ONKYO_VOLDOWN,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB6C03F"}));
-    register_command(&ONKYO_MUTE,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6A05F"}));
-    register_command(&ONKYO_MODE_MOVIETV,   makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B350BF4"}));
-    register_command(&ONKYO_MODE_MUSIC,     makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B358B74"}));
-    register_command(&ONKYO_MODE_GAME,      makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B354BB4"}));
-    register_command(&ONKYO_PREV,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B4009F6"}));
-    register_command(&ONKYO_PLAY,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B983AC5"}));
-    register_command(&ONKYO_NEXT,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B40F10E"}));
-    register_command(&ONKYO_SHUFFLE,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B98FA05"}));
-    register_command(&ONKYO_MEMORY,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B404BB4"}));
-    register_command(&ONKYO_MODE,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B40CB34"}));
+bool DEVICE_IS_ON = false;
+
+void register_device_onkyo()
+{
+    register_command(&ONKYO_POWER,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36D32C"}));
+    register_command(&ONKYO_BDDVD,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B3631CE"}));
+    register_command(&ONKYO_CBLSAT,       makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6708F"}));
+    register_command(&ONKYO_GAME,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6B04F"}));
+    register_command(&ONKYO_STRMBOX,      makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6B04F"}));
+    register_command(&ONKYO_PC,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB639C6"}));
+    register_command(&ONKYO_AUX,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6F906"}));
+    register_command(&ONKYO_CD,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6906F"}));
+    register_command(&ONKYO_TV,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB612ED"}));
+    register_command(&ONKYO_PHONO,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB650AF"}));
+    register_command(&ONKYO_TUNER,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6D02F"}));
+    register_command(&ONKYO_NET,          makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B40E11E"}));
+    register_command(&ONKYO_BT,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B780A70"}));
+    register_command(&ONKYO_QUICKMENU,    makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36CA35"}));
+    register_command(&ONKYO_INFO,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36AA55"}));
+    register_command(&ONKYO_UP,           makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB641BE"}));
+    register_command(&ONKYO_LEFT,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB621DE"}));
+    register_command(&ONKYO_ENTER,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6E916"}));
+    register_command(&ONKYO_RIGHT,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB6A15E"}));
+    register_command(&ONKYO_DOWN,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB6C13E"}));
+    register_command(&ONKYO_SETTINGS,     makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36DB24"}));
+    register_command(&ONKYO_RETURN,       makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B362AD5"}));
+    register_command(&ONKYO_VOLUP,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB640BF"}));
+    register_command(&ONKYO_VOLDOWN,      makeCommandData(IR, {std::to_string(IR_PROTOCOL_EPSON), "0x4BB6C03F"}));
+    register_command(&ONKYO_MUTE,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4BB6A05F"}));
+    register_command(&ONKYO_MODE_MOVIETV, makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B350BF4"}));
+    register_command(&ONKYO_MODE_MUSIC,   makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B358B74"}));
+    register_command(&ONKYO_MODE_GAME,    makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B354BB4"}));
+    register_command(&ONKYO_PREV,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B4009F6"}));
+    register_command(&ONKYO_PLAY,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B983AC5"}));
+    register_command(&ONKYO_NEXT,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B40F10E"}));
+    register_command(&ONKYO_SHUFFLE,      makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B98FA05"}));
+    register_command(&ONKYO_MEMORY,       makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B404BB4"}));
+    register_command(&ONKYO_MODE,         makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B40CB34"}));
+}
+
+void turn_onkyo_off()
+{
+    if (DEVICE_IS_ON)
+    {
+        executeCommand(ONKYO_POWER);
+        DEVICE_IS_ON = false;
+    }
+}
+
+void turn_onkyo_on()
+{
+    if (!DEVICE_IS_ON){
+        executeCommand(ONKYO_POWER);
+        DEVICE_IS_ON = true;
+    }
+}
+
+void set_source(uint16_t command)
+{
+    DEVICE_IS_ON = true;
+    executeCommand(command);
+}
+
+void exec_onkyo_command(uint16_t command)
+{
+    if (command != ONKYO_POWER && DEVICE_IS_ON)
+    {
+        executeCommand(command);
+    }
 }

@@ -41,3 +41,7 @@ extern uint16_t ONKYO_MEMORY;
 extern uint16_t ONKYO_MODE;
 
 void register_device_onkyo();
+void turn_onkyo_off();
+void turn_onkyo_on();
+void set_source(uint16_t command);
+void exec_onkyo_command(uint16_t command);
