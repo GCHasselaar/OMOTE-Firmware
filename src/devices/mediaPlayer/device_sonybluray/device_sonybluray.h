@@ -4,8 +4,8 @@
 
 extern uint16_t BLURAY_EJECT;
 extern uint16_t BLURAY_SOURCE;
-extern uint16_t BLURAY_TVON;
-extern uint16_t BLURAY_ON;
+extern uint16_t BLURAY_TV_POWER;
+extern uint16_t BLURAY_POWER;
 extern uint16_t BLURAY_RED;
 extern uint16_t BLURAY_GREEN;
 extern uint16_t BLURAY_YELLOW;
@@ -37,3 +37,6 @@ extern uint16_t BLURAY_VOLUME_DOWN;
 extern uint16_t BLURAY_DISPLAY;
 
 void register_device_sonybluray();
+void turn_bluray_off();
+void turn_bluray_on();
+void exec_sony_bluray_command(uint16_t command);

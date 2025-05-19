@@ -4,8 +4,8 @@
 
 uint16_t BLURAY_EJECT;
 uint16_t BLURAY_SOURCE;
-uint16_t BLURAY_TVON;
-uint16_t BLURAY_ON;
+uint16_t BLURAY_TV_POWER;
+uint16_t BLURAY_POWER;
 uint16_t BLURAY_RED;
 uint16_t BLURAY_GREEN;
 uint16_t BLURAY_YELLOW;
@@ -36,11 +36,14 @@ uint16_t BLURAY_VOLUME_UP;
 uint16_t BLURAY_VOLUME_DOWN;
 uint16_t BLURAY_DISPLAY;
 
-void register_device_sonybluray(){
+bool BLURAY_IS_ON = false;
+
+void register_device_sonybluray()
+{
     register_command(&BLURAY_EJECT,       makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0x68B47"}));
     register_command(&BLURAY_SOURCE,      makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0xA50"}));
-    register_command(&BLURAY_TVON,        makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0xA90"}));
-    register_command(&BLURAY_ON,          makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0xA8B47"}));
+    register_command(&BLURAY_TV_POWER,    makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0xA90"}));
+    register_command(&BLURAY_POWER,       makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0xA8B47"}));
     register_command(&BLURAY_RED,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0xE6B47"}));
     register_command(&BLURAY_GREEN,       makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0x16B47"}));
     register_command(&BLURAY_YELLOW,      makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0x96B47"}));
@@ -70,4 +73,29 @@ void register_device_sonybluray(){
     register_command(&BLURAY_VOLUME_UP,   makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0x490"}));
     register_command(&BLURAY_VOLUME_DOWN, makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0xC90"}));
     register_command(&BLURAY_DISPLAY,     makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0x82B47"}));
+}
+
+void turn_bluray_off()
+{
+    if (BLURAY_IS_ON)
+    {
+        executeCommand(BLURAY_POWER);
+        BLURAY_IS_ON = false;
+    }
+}
+
+void turn_bluray_on()
+{
+    if (!BLURAY_IS_ON){
+        executeCommand(BLURAY_POWER);
+        BLURAY_IS_ON = true;
+    }
+}
+
+void exec_sony_bluray_command(uint16_t command)
+{
+    if (command != BLURAY_POWER && BLURAY_IS_ON)
+    {
+        executeCommand(command);
+    }
 }
