@@ -40,7 +40,7 @@ uint16_t ONKYO_SHUFFLE;
 uint16_t ONKYO_MEMORY;
 uint16_t ONKYO_MODE;
 
-bool DEVICE_IS_ON = false;
+bool ONKYO_IS_ON = false;
 
 void register_device_onkyo()
 {
@@ -82,30 +82,30 @@ void register_device_onkyo()
 
 void turn_onkyo_off()
 {
-    if (DEVICE_IS_ON)
+    if (ONKYO_IS_ON)
     {
         executeCommand(ONKYO_POWER);
-        DEVICE_IS_ON = false;
+        ONKYO_IS_ON = false;
     }
 }
 
 void turn_onkyo_on()
 {
-    if (!DEVICE_IS_ON){
+    if (!ONKYO_IS_ON){
         executeCommand(ONKYO_POWER);
-        DEVICE_IS_ON = true;
+        ONKYO_IS_ON = true;
     }
 }
 
 void set_source(uint16_t command)
 {
-    DEVICE_IS_ON = true;
+    ONKYO_IS_ON = true;
     executeCommand(command);
 }
 
 void exec_onkyo_command(uint16_t command)
 {
-    if (command != ONKYO_POWER && DEVICE_IS_ON)
+    if (command != ONKYO_POWER && ONKYO_IS_ON)
     {
         executeCommand(command);
     }
