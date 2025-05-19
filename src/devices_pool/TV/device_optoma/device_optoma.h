@@ -4,8 +4,8 @@
 
 extern uint16_t BLURAY_EJECT;
 extern uint16_t BLURAY_SOURCE;
-extern uint16_t BLURAY_TVON;
-extern uint16_t BLURAY_ON;
+extern uint16_t BLURAY_TV_POWER;
+extern uint16_t BLURAY_POWER;
 extern uint16_t BLURAY_RED;
 extern uint16_t BLURAY_GREEN;
 extern uint16_t BLURAY_YELLOW;
