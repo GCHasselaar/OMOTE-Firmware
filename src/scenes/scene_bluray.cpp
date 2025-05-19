@@ -24,12 +24,11 @@ void scene_setKeys_bluray() {
 }
 
 void scene_start_sequence_bluray(void) {
-  executeCommand(BLURAY_ON);
-  delay(500);
-  executeCommand(ONKYO_POWER);
-  delay(500);
-  executeCommand(OPTOMA_OFF);
-  delay(500);
+  set_source(ONKYO_BDDVD);
+  delay(250);
+  executeCommand(OPTOMA_ON);
+  delay(250);
+  turn_bluray_on();
 }
 
 void scene_end_sequence_bluray(void) {}

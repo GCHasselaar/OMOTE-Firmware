@@ -24,12 +24,9 @@ void scene_setKeys_switch() {
 }
 
 void scene_start_sequence_switch(void) {
-  executeCommand(BLURAY_ON);
-  delay(500);
-  executeCommand(ONKYO_POWER);
-  delay(500);
-  executeCommand(OPTOMA_OFF);
-  delay(500);
+  set_source(ONKYO_GAME);
+  delay(250);
+  executeCommand(OPTOMA_ON);
 }
 
 void scene_end_sequence_switch(void) {}

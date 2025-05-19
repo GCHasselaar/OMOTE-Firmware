@@ -25,13 +25,11 @@ void scene_setKeys_allOff() {
 }
 
 void scene_start_sequence_allOff(void) {
-  omote_log_i("start scene all off");
-  executeCommand(BLURAY_ON);
-  delay(500);
-  executeCommand(ONKYO_POWER);
-  delay(500);
+  turn_onkyo_off();
+  delay(250);
+  turn_bluray_off();
+  delay(250);
   executeCommand(OPTOMA_OFF);
-  delay(500);
 }
 
 void scene_end_sequence_allOff(void) {}
