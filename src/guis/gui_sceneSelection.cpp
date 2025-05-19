@@ -177,7 +177,7 @@ void create_tab_content_sceneSelection(lv_obj_t *tab)
   scene_list scenes = get_scenes_on_sceneSelectionGUI();
   if ((scenes != NULL) && (scenes->size() > 0))
   {
-    for (int i = 0; i < scenes->size(); ++i)
+    for (int i = 0; i < scenes->size(); i++)
     {
       create_button(
           grid,
@@ -188,7 +188,7 @@ void create_tab_content_sceneSelection(lv_obj_t *tab)
       );
 
       useLeft = !useLeft;
-      if (i != 0 && i % 2 == 0)
+      if (i > 0 && i % 2 != 0)
       {
         rowIndex++;
       }
