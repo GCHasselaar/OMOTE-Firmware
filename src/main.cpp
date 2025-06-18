@@ -29,21 +29,22 @@
 #include "guis/gui_irReceiver.h"
 #include "guis/gui_settings.h"
 #include "guis/gui_BLEpairing.h"
-//#include "devices/misc/device_airconditioner/gui_airconditioner.h"
 #include "applicationInternal/keys.h"
 #include "applicationInternal/gui/guiStatusUpdate.h"
+#include "applicationInternal/scenes/sceneHandler.h"
 // register scenes
 #include "scenes/scene__default.h"
 #include "scenes/scene_allOff.h"
 #include "scenes/scene_bluray.h"
+#include "scenes/scene_chromecast.h"
 #include "scenes/scene_gamecube.h"
+#include "scenes/scene_onkyo_settings.h"
+#include "scenes/scene_optoma_settings.h"
 #include "scenes/scene_pc.h"
 #include "scenes/scene_ps3.h"
 #include "scenes/scene_switch.h"
 #include "scenes/scene_switch2.h"
 #include "scenes/scene_wii.h"
-#include "scenes/scene_chromecast.h"
-#include "applicationInternal/scenes/sceneHandler.h"
 
 #if defined(ARDUINO)
 // in case of Arduino we have a setup() and a loop()
@@ -117,14 +118,23 @@ int main(int argc, char *argv[]) {
   register_scene_bluray();
   register_scene_chromecast();
   register_scene_gamecube();
+  register_scene_onkyo_settings();
+  register_scene_optoma_settings();
   register_scene_pc();
   register_scene_ps3();
   register_scene_switch();
+  register_scene_switch2();
   register_scene_wii();
 
   register_scene_allOff();
   // Only show these scenes on the sceneSelection gui. If you don't set this explicitely, by default all registered scenes are shown.
-  set_scenes_on_sceneSelectionGUI({scene_name_bluray, scene_name_chromecast, scene_name_gamecube, scene_name_pc, scene_name_ps3, scene_name_switch, scene_name_switch2, scene_name_wii});
+  set_scenes_on_sceneSelectionGUI({
+    scene_name_pc, scene_name_chromecast,
+    scene_name_switch, scene_name_switch2,
+    scene_name_bluray, scene_name_ps3, 
+    scene_name_gamecube, scene_name_wii,
+    scene_name_onkyo_settings, scene_name_optoma_settings
+  });
 
   // init GUI - will initialize tft, touch and lvgl
   init_gui(); // This has to come before any other i2c devices are initialized, otherwise the i2c bus will not be powered
