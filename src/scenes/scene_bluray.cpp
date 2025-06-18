@@ -18,9 +18,58 @@ std::map<char, uint16_t> key_commands_short_bluray;
 std::map<char, uint16_t> key_commands_long_bluray;
 
 void scene_setKeys_bluray() {
-  key_repeatModes_bluray = {};
-  key_commands_short_bluray = {};
-  key_commands_long_bluray = {};
+  key_repeatModes_bluray = {
+    {KEY_STOP, SHORT},
+    {KEY_REWI, SHORTorLONG},
+    {KEY_PLAY, SHORT},
+    {KEY_FORW, SHORTorLONG},
+
+    {KEY_CONF, SHORT},
+    {KEY_INFO, SHORT},
+    {KEY_UP, SHORT},
+    {KEY_LEFT, SHORT},
+    {KEY_OK, SHORTorLONG},
+    {KEY_RIGHT, SHORT},
+    {KEY_DOWN, SHORT},
+    {KEY_BACK, SHORT},
+    {KEY_SRC, SHORT},
+
+    {KEY_REC, SHORT},
+
+    {KEY_RED, SHORT},
+    {KEY_GREEN, SHORT},
+    {KEY_YELLO, SHORT},
+    {KEY_BLUE, SHORT}
+  };
+
+  key_commands_short_bluray = {
+    {KEY_STOP, BLURAY_STOP},
+    {KEY_REWI, BLURAY_REWIND},
+    {KEY_PLAY, BLURAY_PLAY},
+    {KEY_FORW, BLURAY_FORWARD},
+
+    {KEY_CONF, BLURAY_TOP_MENU},
+    {KEY_INFO, BLURAY_POP_UP},
+    {KEY_UP, BLURAY_UP},
+    {KEY_LEFT, BLURAY_LEFT},
+    {KEY_OK, BLURAY_CENTER},
+    {KEY_RIGHT, BLURAY_RIGHT},
+    {KEY_DOWN, BLURAY_DOWN},
+    {KEY_BACK, BLURAY_RETURN},
+    {KEY_SRC, BLURAY_OPTIONS},
+
+    {KEY_REC, BLURAY_EJECT},
+
+    {KEY_RED, BLURAY_RED},
+    {KEY_GREEN, BLURAY_GREEN},
+    {KEY_YELLO, BLURAY_YELLOW},
+    {KEY_BLUE, BLURAY_BLUE}
+  };
+  key_commands_long_bluray = {
+    {KEY_OK, BLURAY_HOME},
+    {KEY_REWI, BLURAY_PREVIOUS},
+    {KEY_FORW, BLURAY_NEXT},
+  };
 }
 
 void scene_start_sequence_bluray(void) {
