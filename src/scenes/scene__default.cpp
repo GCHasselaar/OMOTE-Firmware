@@ -3,17 +3,11 @@
 #include "applicationInternal/scenes/sceneRegistry.h"
 #include "applicationInternal/commandHandler.h"
 // devices
+#include "devices/AVreceiver/device_onkyo/device_onkyo.h"
 
 // scenes
 #include "scene__default.h"
 #include "scenes/scene_allOff.h"
-#include "scenes/scene_bluray.h"
-#include "scenes/scene_chromecast.h"
-#include "scenes/scene_gamecube.h"
-#include "scenes/scene_pc.h"
-#include "scenes/scene_ps3.h"
-#include "scenes/scene_switch.h"
-#include "scenes/scene_wii.h"
 
 uint16_t SCENE_SELECTION;
 std::string scene_name_selection = "sceneSelection";
@@ -49,7 +43,10 @@ void register_scene_defaultKeys(void) {
   };
   
   key_commands_short_default = {
-    {KEY_OFF,   SCENE_ALLOFF_FORCE}
+    {KEY_OFF,   SCENE_ALLOFF_FORCE},
+    {KEY_VOLUP, ONKYO_VOLUP},
+    {KEY_VOLDO, ONKYO_VOLDOWN},
+    {KEY_MUTE, ONKYO_MUTE}
   };
   
   key_commands_long_default = { };
