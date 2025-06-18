@@ -30,3 +30,4 @@ extern uint16_t BLURAY_PAUSE;
 extern uint16_t BLURAY_STOP;
 
 void register_device_optoma();
+void turn_optoma_off();

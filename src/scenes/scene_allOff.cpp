@@ -4,12 +4,13 @@
 #include "applicationInternal/keys.h"
 #include "applicationInternal/scenes/sceneRegistry.h"
 #include "applicationInternal/hardware/hardwarePresenter.h"
+#include "scenes/scene__default.h"
+#include "applicationInternal/omote_log.h"
 
 // devices
 #include "devices/AVreceiver/device_onkyo/device_onkyo.h"
 #include "devices/mediaPlayer/device_sonybluray/device_sonybluray.h"
 #include "devices/TV/device_optoma/device_optoma.h"
-#include "applicationInternal/omote_log.h"
 
 uint16_t SCENE_ALLOFF;
 uint16_t SCENE_ALLOFF_FORCE;
@@ -29,7 +30,9 @@ void scene_start_sequence_allOff(void) {
   delay(250);
   turn_bluray_off();
   delay(250);
-  executeCommand(OPTOMA_OFF);
+  turn_optoma_off();
+
+  executeCommand(SCENE_SELECTION);
 }
 
 void scene_end_sequence_allOff(void) {}

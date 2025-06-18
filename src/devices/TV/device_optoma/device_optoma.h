@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stdint.h>
-
 // Contains definitions for the Omote remote model L-27-5KEY
 
 extern uint16_t OPTOMA_ON;
@@ -32,3 +30,4 @@ extern uint16_t OPTOMA_VIDEO;
 extern uint16_t OPTOMA_COMPONENT;
 
 void register_device_optoma();
+void turn_optoma_off();

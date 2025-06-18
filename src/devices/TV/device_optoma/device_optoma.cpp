@@ -59,3 +59,10 @@ void register_device_optoma(){
     register_command(&OPTOMA_VIDEO,         makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB338C7"}));
     register_command(&OPTOMA_COMPONENT,     makeCommandData(IR,{std::to_string(IR_PROTOCOL_NEC),"0x4CB3E817"}));
 }
+
+void turn_optoma_off()
+{
+    executeCommand(OPTOMA_OFF);
+    delay(250);
+    executeCommand(OPTOMA_OFF);
+}
