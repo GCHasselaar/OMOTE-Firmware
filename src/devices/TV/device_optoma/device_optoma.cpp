@@ -63,6 +63,6 @@ void register_device_optoma(){
 void turn_optoma_off()
 {
     executeCommand(OPTOMA_OFF);
-    delay(750);
+    delay(1000);
     executeCommand(OPTOMA_OFF);
 }

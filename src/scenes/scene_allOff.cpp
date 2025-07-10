@@ -27,10 +27,10 @@ void scene_setKeys_allOff() {
 
 void scene_start_sequence_allOff(void) {
   turn_onkyo_off();
-  delay(750);
-  turn_bluray_off();
-  delay(750);
+  delay(1000);
   turn_optoma_off();
+  delay(1000);
+  turn_bluray_off();
 
   executeCommand(SCENE_SELECTION);
 }
