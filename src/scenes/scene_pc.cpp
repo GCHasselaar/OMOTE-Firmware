@@ -24,7 +24,7 @@ void scene_setKeys_pc() {
 
 void scene_start_sequence_pc(void) {
   set_source(ONKYO_PC);
-  delay(250);
+  delay(1000);
   executeCommand(OPTOMA_ON);
 }
 

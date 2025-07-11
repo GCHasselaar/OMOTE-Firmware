@@ -25,7 +25,7 @@ void scene_setKeys_wii() {
 
 void scene_start_sequence_wii(void) {
   set_source(ONKYO_TV);
-  delay(250);
+  delay(1000);
   executeCommand(OPTOMA_ON);
 }
 

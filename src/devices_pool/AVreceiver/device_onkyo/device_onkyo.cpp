@@ -99,8 +99,8 @@ void turn_onkyo_on()
 
 void set_source(uint16_t command)
 {
-    ONKYO_IS_ON = true;
     executeCommand(command);
+    ONKYO_IS_ON = true;
 }
 
 void exec_onkyo_command(uint16_t command)

@@ -25,7 +25,7 @@ void scene_setKeys_ps3() {
 
 void scene_start_sequence_ps3(void) {
   set_source(ONKYO_STRMBOX);
-  delay(250);
+  delay(1000);
   executeCommand(OPTOMA_ON);
 }
 
