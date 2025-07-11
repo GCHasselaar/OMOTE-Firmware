@@ -44,8 +44,10 @@ void scene_setKeys_onkyo_settings() {
 }
 
 void scene_start_sequence_onkyo_settings(void) {
+  turn_onkyo_on();
+  delay(1000);
   executeCommand(ONKYO_SETTINGS);
-  delay(250);
+  delay(1000);
   executeCommand(OPTOMA_ON);
 }
 
