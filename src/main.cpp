@@ -210,6 +210,7 @@ void loop(unsigned long *pIMUTaskTimer, unsigned long *pUpdateStatusTimer) {
 
     check_activity();
 
+    update_button_borders();
   }
 
   // --- every 1000 ms ------------------------------------------------------------------

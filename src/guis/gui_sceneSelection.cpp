@@ -16,7 +16,7 @@ lv_obj_t *grid;
 static int lastShortClickedReceived;
 static unsigned long int lastShortClickedReceivedTime;
 
-static void update_button_borders()
+void update_button_borders()
 {
   uint32_t iterator;
   lv_obj_t *child;
