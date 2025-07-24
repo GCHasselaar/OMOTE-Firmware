@@ -2,6 +2,7 @@
 #include "sleep_hal_esp32.h"
 #include "tft_hal_esp32.h"
 #include "keypad_keys_hal_esp32.h"
+#include <map>
 
 Preferences preferences;
 
@@ -9,6 +10,7 @@ std::string activeScene;
 std::string activeGUIname;
 int activeGUIlist;
 int lastActiveGUIlistIndex;
+std::map<std::string,bool> userDevicesStatus;
 
 void init_preferences_HAL(void) {
   // Restore settings from internal flash memory
@@ -29,6 +31,8 @@ void init_preferences_HAL(void) {
     activeGUIname = std::string(preferences.getString("currentGUIname").c_str());
     activeGUIlist =(preferences.getInt("currentGUIlist"));
     lastActiveGUIlistIndex = (preferences.getInt("lastActiveIndex"));
+
+    std::string deserializedStates = std::string(preferences.getString("userDevicesStatus").c_str());
 
     // Serial.printf("Preferences restored: blBrightness %d, kbBrightness %d, GUI %s, scene %s\r\n", get_backlightBrightness_HAL(), get_keyboardBrightness_HAL(), activeGUIname.c_str(), activeScene.c_str());
   } else {
@@ -58,6 +62,13 @@ void save_preferences_HAL(void) {
   if (!preferences.getBool("alreadySetUp")) {
     preferences.putBool("alreadySetUp", true);
   }
+
+  std::string serialized = "";
+  for(auto it = userDevicesStatus.begin();it!=userDevicesStatus.cend();it++){
+    serialized += (it->first) + ":" + std::to_string(it->second) + ",";
+  }
+  serialized = serialized.substr(0,serialized.size()-1);
+  preferences.putString("userDevicesStatus", serialized.c_str());
   preferences.end();
 }
 
@@ -85,3 +96,10 @@ int get_lastActiveGUIlistIndex_HAL() {
 void set_lastActiveGUIlistIndex_HAL(int aGUIlistIndex) {
   lastActiveGUIlistIndex = aGUIlistIndex;
 }
+bool get_userDeviceIsOn_HAL(std::string deviceName){
+  return userDevicesStatus[deviceName];
+}
+void set_userDeviceStatus_HAL(std::string deviceName, bool newStatus){
+  userDevicesStatus[deviceName] = newStatus;
+}
+

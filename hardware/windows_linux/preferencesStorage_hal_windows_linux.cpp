@@ -1,4 +1,5 @@
 #include <string>
+#include <map>
 
 enum GUIlists {
 // MAIN_GUI_LIST: we are in the main_gui_list (with the scene selector as first gui), either if a scene is active or not
@@ -21,6 +22,7 @@ std::string activeScene;
 std::string activeGUIname;
 int activeGUIlist;
 int lastActiveGUIlistIndex;
+std::map<std::string,bool> userDevicesStatus;
 
 void init_preferences_HAL(void) {
   // set some values for tests
@@ -55,4 +57,10 @@ int get_lastActiveGUIlistIndex_HAL() {
 }
 void set_lastActiveGUIlistIndex_HAL(int aGUIlistIndex) {
   lastActiveGUIlistIndex = aGUIlistIndex;
+}
+bool get_userDeviceIsOn_HAL(std::string deviceName){
+  return userDevicesStatus[deviceName];
+}
+void set_userDeviceStatus_HAL(std::string deviceName, bool newStatus){
+  userDevicesStatus[deviceName] = newStatus;
 }

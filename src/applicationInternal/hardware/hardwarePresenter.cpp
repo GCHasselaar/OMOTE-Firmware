@@ -50,6 +50,12 @@ int get_lastActiveGUIlistIndex() {
 void set_lastActiveGUIlistIndex(int aGUIlistIndex) {
   set_lastActiveGUIlistIndex_HAL(aGUIlistIndex);
 }
+bool get_userDeviceIsOn(std::string deviceName){
+  return get_userDeviceIsOn_HAL(deviceName);
+}
+void set_userDeviceStatus(std::string deviceName, bool newStatus){
+  set_userDeviceStatus_HAL(deviceName, newStatus);
+}
 
 // --- user led ---------------------------------------------------------------
 void init_userled(void) {
