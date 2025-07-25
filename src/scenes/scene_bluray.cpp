@@ -80,7 +80,9 @@ void scene_start_sequence_bluray(void) {
   turn_bluray_on();
 }
 
-void scene_end_sequence_bluray(void) {}
+void scene_end_sequence_bluray(void) {
+  turn_bluray_off();
+}
 
 std::string scene_name_bluray = "Bluray";
 
