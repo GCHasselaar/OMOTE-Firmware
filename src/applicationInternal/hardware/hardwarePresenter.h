@@ -19,7 +19,7 @@ int get_activeGUIlist();
 void set_activeGUIlist(int anActiveGUIlist);
 int get_lastActiveGUIlistIndex();
 void set_lastActiveGUIlistIndex(int aGUIlistIndex);
-bool get_userDeviceIsOn(std::string deviceName);
+bool get_userDeviceStatus(std::string deviceName);
 void set_userDeviceStatus(std::string deviceName, bool newStatus);
 
 // --- user led ---------------------------------------------------------------

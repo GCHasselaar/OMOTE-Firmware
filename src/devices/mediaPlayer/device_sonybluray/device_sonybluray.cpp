@@ -36,8 +36,6 @@ uint16_t BLURAY_VOLUME_UP;
 uint16_t BLURAY_VOLUME_DOWN;
 uint16_t BLURAY_DISPLAY;
 
-bool BLURAY_IS_ON = false;
-
 void register_device_sonybluray()
 {
     register_command(&BLURAY_EJECT,       makeCommandData(IR,{std::to_string(IR_PROTOCOL_SONY),"0x68B47"}));
@@ -77,24 +75,24 @@ void register_device_sonybluray()
 
 void turn_bluray_off()
 {
-    if (BLURAY_IS_ON)
+    if (get_userDeviceStatus("SONYBLURAY"))
     {
         executeCommand(BLURAY_POWER);
-        BLURAY_IS_ON = false;
+        set_userDeviceStatus("SONYBLURAY",false);
     }
 }
 
 void turn_bluray_on()
 {
-    if (!BLURAY_IS_ON){
+    if (!get_userDeviceStatus("SONYBLURAY")){
         executeCommand(BLURAY_POWER);
-        BLURAY_IS_ON = true;
+        set_userDeviceStatus("SONYBLURAY",true);
     }
 }
 
 void exec_sony_bluray_command(uint16_t command)
 {
-    if (command != BLURAY_POWER && BLURAY_IS_ON)
+    if (command != BLURAY_POWER && get_userDeviceStatus("SONYBLURAY"))
     {
         executeCommand(command);
     }

@@ -13,5 +13,5 @@ int get_activeGUIlist_HAL();
 void set_activeGUIlist_HAL(int anActiveGUIlist);
 int get_lastActiveGUIlistIndex_HAL();
 void set_lastActiveGUIlistIndex_HAL(int aGUIlistIndex);
-bool get_userDeviceIsOn_HAL(std::string deviceName);
+bool get_userDeviceStatus_HAL(std::string deviceName);
 void set_userDeviceStatus_HAL(std::string deviceName, bool newStatus);

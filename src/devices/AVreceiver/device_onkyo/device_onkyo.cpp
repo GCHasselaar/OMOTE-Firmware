@@ -40,8 +40,6 @@ uint16_t ONKYO_SHUFFLE;
 uint16_t ONKYO_MEMORY;
 uint16_t ONKYO_MODE;
 
-bool ONKYO_IS_ON = false;
-
 void register_device_onkyo()
 {
     register_command(&ONKYO_POWER,        makeCommandData(IR, {std::to_string(IR_PROTOCOL_NEC),   "0x4B36D32C"}));
@@ -82,30 +80,30 @@ void register_device_onkyo()
 
 void turn_onkyo_off()
 {
-    if (ONKYO_IS_ON)
+    if (get_userDeviceStatus("ONKYO"))
     {
         executeCommand(ONKYO_POWER);
-        ONKYO_IS_ON = false;
+        set_userDeviceStatus("ONKYO",false);
     }
 }
 
 void turn_onkyo_on()
 {
-    if (!ONKYO_IS_ON){
+    if (!get_userDeviceStatus("ONKYO")){
         executeCommand(ONKYO_POWER);
-        ONKYO_IS_ON = true;
+        set_userDeviceStatus("ONKYO",true);
     }
 }
 
 void set_source(uint16_t command)
 {
     executeCommand(command);
-    ONKYO_IS_ON = true;
+    set_userDeviceStatus("ONKYO",true);
 }
 
 void exec_onkyo_command(uint16_t command)
 {
-    if (command != ONKYO_POWER && ONKYO_IS_ON)
+    if (command != ONKYO_POWER && get_userDeviceStatus("ONKYO"))
     {
         executeCommand(command);
     }
