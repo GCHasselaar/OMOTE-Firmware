@@ -78,8 +78,7 @@ void init_preferences_HAL(void)
     activeGUIname = std::string(preferences.getString("currentGUIname").c_str());
     activeGUIlist = (preferences.getInt("currentGUIlist"));
     lastActiveGUIlistIndex = (preferences.getInt("lastActiveIndex"));
-
-    userDevicesStatus = deserializeMap(preferences.getString("userDevicesStatus").c_str());
+    userDevicesStatus = deserializeMap(preferences.getString("userStatuses").c_str());
 
     // Serial.printf("Preferences restored: blBrightness %d, kbBrightness %d, GUI %s, scene %s\r\n", get_backlightBrightness_HAL(), get_keyboardBrightness_HAL(), activeGUIname.c_str(), activeScene.c_str());
   }
@@ -109,12 +108,11 @@ void save_preferences_HAL(void)
   preferences.putString("currentGUIname", activeGUIname.c_str());
   preferences.putInt("currentGUIlist", activeGUIlist);
   preferences.putInt("lastActiveIndex", lastActiveGUIlistIndex);
+  preferences.putString("userStatuses", serializeMap(userDevicesStatus).c_str());
   if (!preferences.getBool("alreadySetUp"))
   {
     preferences.putBool("alreadySetUp", true);
   }
-
-  preferences.putString("userDevicesStatus", serializeMap(userDevicesStatus).c_str());
   preferences.end();
 }
 
