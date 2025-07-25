@@ -109,6 +109,7 @@ void save_preferences_HAL(void)
   preferences.putInt("currentGUIlist", activeGUIlist);
   preferences.putInt("lastActiveIndex", lastActiveGUIlistIndex);
   preferences.putString("userStatuses", serializeMap(userDevicesStatus).c_str());
+  
   if (!preferences.getBool("alreadySetUp"))
   {
     preferences.putBool("alreadySetUp", true);
