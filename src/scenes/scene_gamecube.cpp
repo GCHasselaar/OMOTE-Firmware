@@ -25,7 +25,7 @@ void scene_setKeys_gamecube() {
 
 void scene_start_sequence_gamecube(void) {
   set_source(ONKYO_CD);
-  delay(1000);
+  delay(500);
   executeCommand(OPTOMA_ON);
 }
 

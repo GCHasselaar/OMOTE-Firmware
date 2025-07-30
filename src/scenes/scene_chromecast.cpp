@@ -25,7 +25,7 @@ void scene_setKeys_chromecast() {
 
 void scene_start_sequence_chromecast(void) {
   set_source(ONKYO_CBLSAT);
-  delay(1000);
+  delay(500);
   executeCommand(OPTOMA_ON);
 }
 

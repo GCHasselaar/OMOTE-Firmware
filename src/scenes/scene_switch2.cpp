@@ -25,7 +25,7 @@ void scene_setKeys_switch2() {
 
 void scene_start_sequence_switch2(void) {
   set_source(ONKYO_PHONO);
-  delay(1000);
+  delay(500);
   executeCommand(OPTOMA_ON);
 }
 

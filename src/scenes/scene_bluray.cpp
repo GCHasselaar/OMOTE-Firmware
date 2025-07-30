@@ -74,9 +74,9 @@ void scene_setKeys_bluray() {
 
 void scene_start_sequence_bluray(void) {
   set_source(ONKYO_BDDVD);
-  delay(1000);
+  delay(500);
   executeCommand(OPTOMA_ON);
-  delay(1000);
+  delay(500);
   turn_bluray_on();
 }
 

@@ -25,7 +25,7 @@ void scene_setKeys_switch() {
 
 void scene_start_sequence_switch(void) {
   set_source(ONKYO_GAME);
-  delay(1000);
+  delay(500);
   executeCommand(OPTOMA_ON);
 }
 
